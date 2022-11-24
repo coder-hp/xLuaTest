@@ -1,0 +1,48 @@
+
+-- Lua代码
+var_int = 100
+var_str = "abc"
+var_bool = true
+
+-- Lua代码
+user1=
+{
+	Name = "HuangPin",
+	Age = 18
+}
+
+-- Lua代码
+function LuaAdd(a,b)
+	return a + b
+end
+
+-- Lua代码
+print(CS.LuaToCSharp():CSharpAdd(2,3));			-- 访问常规方法
+print(CS.LuaToCSharp.CSharpAdd_Static(1,2));	-- 访问静态方法
+print(CS.LuaToCSharp().num);					-- 访问常规变量
+print(CS.LuaToCSharp.num_static);				-- 访问静态变量
+
+function CreateObject()
+
+	-- 创建一个对象
+	local newGameObj = CS.UnityEngine.GameObject()
+	newGameObj.name = "btn"
+	newGameObj.transform:SetParent(CS.UnityEngine.GameObject.Find('Canvas').transform)
+	newGameObj.transform.localPosition = CS.UnityEngine.Vector3(0,0,0)
+	newGameObj.transform.localScale = CS.UnityEngine.Vector3(1,1,1)
+	
+	-- 添加Image组件
+	newGameObj:AddComponent(typeof(CS.UnityEngine.UI.Image))
+	-- 设置Image的图片
+	newGameObj:GetComponent("Image").sprite = CS.UnityEngine.Resources.Load("images/bg",typeof(CS.UnityEngine.Sprite));
+	
+	-- 增加Button组件
+	newGameObj:AddComponent(typeof(CS.UnityEngine.UI.Button))
+	-- 设置Button点击事件
+	newGameObj:GetComponent("Button").onClick:AddListener(function()
+		 print("Click")
+	end)
+	
+end
+
+--CreateObject()
